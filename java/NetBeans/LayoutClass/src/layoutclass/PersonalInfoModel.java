@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
 public class PersonalInfoModel extends AbstractTableModel {
 
     private List<PersonalInfo> personalInfoList;
-    private String[] columns = {"First Name", "Last Name"};
+    private String[] columns = {"First Name", "Last Name", "Email"};
     public PersonalInfoModel(List<PersonalInfo> info){
         personalInfoList = info;
     }
@@ -28,7 +28,7 @@ public class PersonalInfoModel extends AbstractTableModel {
     @Override
     public int getColumnCount() {
         
-        return 2;
+        return 3;
     }
 
     @Override
@@ -37,6 +37,7 @@ public class PersonalInfoModel extends AbstractTableModel {
     switch(col) {
       case 0: return info.firstName;
       case 1: return info.surName;
+      case 2: return info.emai;
       // to complete here...
       default: return null;
     }
