@@ -1,7 +1,6 @@
 // BinarySearchTree.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
 
 #include <stdio.h>
 #include <malloc.h>
@@ -92,8 +91,9 @@ Node *deleteNode(Node* root, int data){
 		while (leftMost->left)
 			leftMost = leftMost->left;
 		root->data = leftMost->data;
-		root->right = deleteNode(leftMost, leftMost->data);
+		root->right = deleteNode(root->right, leftMost->data);
 	}
+	return root;
 }
 
 int main(){
@@ -102,23 +102,37 @@ int main(){
 	//root = insertNode(root, 5);
 	//printf("%d\n", root->data);
 
+	/* Let us create following BST
+	50
+	/     \
+	30      70
+	/  \    /  \
+	20   40  60   80 */
+	int array[7] = {50, 30, 20, 40, 70, 60, 80};
+	int i;
+	for (i = 0; i < 7; i++){
+		root = insertNode(root, array[i]);
+	}
+
+
 	int choice, data;
 	do{
-		printf("\nPreOrder: ");
-		preOrder(root);
+		//printf("\nPreOrder: ");
+		//preOrder(root);
 		printf("\nInOrder: ");
 		inOrder(root);
-		printf("\nPostOrder: ");
-		postOrder(root);
+		/*printf("\nPostOrder: ");
+		postOrder(root);*/
 		printf("\nPlease Enter no between 0 to 7: ");
 		printf("\n0. Exit");
 		printf("\n1. Insert");
 		printf("\n2. Search");
+		printf("\n3. Delete");
 		printf("\n");
 		scanf("%d", &choice);
 		switch (choice)
 		{
-		case 1: 
+		case 1:
 			printf("\nEnter value to insert ");
 			scanf("%d", &data);
 			root = insertNode(root, data);
@@ -130,10 +144,16 @@ int main(){
 				printf("\n%d value found in tree\n", data);
 			else
 				printf("\n%d value not found\n", data);
+			break;
+		case 3: 
+			printf("\nEnter no to delete ");
+			scanf("%d", &data);
+			root = deleteNode(root, data);
+			break;
 		default:
 			break;
 		}
 	} while (choice);
-	
+
 	return 0;
 }
