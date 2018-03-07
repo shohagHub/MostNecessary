@@ -37,14 +37,14 @@ void combination(int level, int index){
 		return;
 	}
 	int i;
-	for (i = index; i <= 9; i++){
+	for (i = index; i <= N; i++){
 		output[level] = i;
 		combination(level + 1, i + 1);
 	}
 }
 
 int main(){
-	N = 100;//
+	N = 5;//
 	R = 3;
 	combination(0, 1);
 	return 0;
