@@ -1,0 +1,113 @@
+Alter any user
+alter user hr identified by hr;
+
+Show the details of a table
+>Describe table_name
+
+Concat the result:
+>select last_name || '`s annual salary is ' || salary * 12 as "Employee Details" from employees;
+
+Select any column
+>select department_id from employees;
+
+select distinct department_id
+>select distinct department_id from employees;
+
+>select employee_id, last_name, job_id, department_id from employees where department_id = 90;
+ 
+>select employee_id, last_name, salary, manager_id from employees where manager_id in(100, 101, 201);
+
+> select last_name from employees where last_name like '%een%';
+Department Ascending, salary ,
+> select last_name, salary, department_id from employees order by department_id, salary desc;
+
+Substitution variable
+ >select employee_id, last_name, salary from employees where employee_id = &employee_num;
+ >select employee_id, last_name, salary from employees where job_id = '&job_title';
+ 
+ >select employee_id, last_name, job_id, &column_name from employees where &condition order by &order_column
+ 
+ Manipulate operations: dummy table name dual
+  select length('Helloworld')  from dual;
+  select 4*5 from dual;
+  
+   select first_name, hire_date, (sysdate-hire_date)/365 as job_duration(Years)  from employees;
+   
+   
+   
+Table important for learning
+
+
+branch (branch_name, branch_city, assets)
+
+customer (customer_name, customer_street, customer_city)
+
+account (account_number, branch_name, balance)
+
+loan (loan_number, branch_name, amount)
+
+depositor (customer_name, account_number)
+
+borrower (customer_name, loan_number)
+
+ create user shohag identified by shohag123 account unlock;
+  grant dba to shohag;
+  
+drop table reserve;
+drop table sailor;
+drop table boat;
+
+create table sailor (Sid int not null,
+Sname varchar(30) not null,
+rating int not null,
+age number not null,
+constraint sailor_pk primary key (sid)
+);
+
+create table boat (bid int not null,
+bname varchar(30) not null,
+color varchar(30),
+constraint boat_pk primary key (bid)
+);
+
+create table reserves (sid int not null,
+bid int not null,
+day Date,
+constraint reserves_sailor_fk foreign key(sid)
+references sailor(sid),
+constraint reserves_fk foreign key(bid)
+references boat(bid)
+);
+
+insert into sailor values(22, 'Dustin', 7, 45.0);
+insert into sailor values(29, 'Brutus', 1, 33.0);
+insert into sailor values(31, 'Lubber', 8, 55.0);
+insert into sailor values(32, 'Andy', 8, 25.0);
+insert into sailor values(58, 'Rusty', 10, 35.0);
+insert into sailor values(64, 'Horatio', 7, 35.0);
+insert into sailor values(71, 'Zorba', 10, 16.0);
+insert into sailor values(74, 'Horatio', 9, 35.0);
+insert into sailor values(85, 'Art', 3, 25.0);
+insert into sailor values(95, 'Bob', 3, 63.0);
+
+insert into boat values(101, 'Interlake', 'blue');
+insert into boat values(102, 'Interlake', 'red');
+insert into boat values(103, 'Clipper', 'green');
+insert into boat values(104, 'Marine', 'red');
+
+insert into reserves values(22, 101, to_date('10/10/98', 'dd/mm/yy'));
+insert into reserves values(22, 102, to_date('10/10/98', 'dd/mm/yy'));
+insert into reserves values(22, 103, to_date('10/08/98', 'dd/mm/yy'));
+insert into reserves values(22, 104, to_date('10/7/98', 'dd/mm/yy'));
+insert into reserves values(31, 102, to_date('11/10/98', 'dd/mm/yy'));
+insert into reserves values(31, 103, to_date('11/06/98', 'dd/mm/yy'));
+insert into reserves values(31, 104, to_date('11/12/98', 'dd/mm/yy'));
+insert into reserves values(64, 101, to_date('9/5/98', 'dd/mm/yy'));
+insert into reserves values(64, 102, to_date('9/8/98', 'dd/mm/yy'));
+insert into reserves values(74, 103, to_date('9/8/98', 'dd/mm/yy'));
+  
+  
+  
+  create table branch (branch_name varchar(30) not null,
+  branch_city varchar(30) not null,
+  
